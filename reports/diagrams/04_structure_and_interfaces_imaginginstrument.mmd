@@ -1,0 +1,18 @@
+flowchart LR
+  subgraph u_imagingInstrument["imagingInstrument : ImagingInstrument"]
+    p_deck["<b>deck</b> : SampleDeck"]
+    p_fluidics["<b>fluidics</b> : FluidicsModule"]
+    p_stage["<b>stage</b> : MotionStage"]
+    p_thermal["<b>thermal</b> : ThermalController"]
+    p_electronics["<b>electronics</b> : ControlElectronics"]
+    p_software["<b>software</b> : ControlSoftware"]
+    p_optics["<b>optics</b> : OpticalModule<br/><i>laser · objective · camera · focus</i>"]
+  end
+  p_optics -- "ImageData" --> p_electronics
+  p_electronics -- "MotionCommand" --> p_stage
+  p_software -- "RunCommand" --> p_electronics
+  p_electronics -- "InstrumentStatus" --> p_software
+  p_fluidics -- "Reagent" --> p_deck
+  p_electronics -- "TemperatureSetpoint" --> p_thermal
+  p_thermal -- "TemperatureReading" --> p_electronics
+  p_thermal -- "Heat" --> p_stage

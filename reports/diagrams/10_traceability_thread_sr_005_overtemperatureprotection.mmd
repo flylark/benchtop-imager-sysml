@@ -1,0 +1,9 @@
+flowchart LR
+  r_overTemperatureProtection("<b>SR-005</b><br/>overTemperatureProtection"):::top
+  p_imagingInstrument_instrumentStates["instrumentStates"]:::part
+  p_imagingInstrument_instrumentStates -.->|satisfies| r_overTemperatureProtection
+  t_VT_06[/"VT-06 OverTemperatureFaultTest"/]:::test
+  r_overTemperatureProtection -.->|verified by| t_VT_06
+  classDef top fill:#e8f0fe,stroke:#1f6feb,stroke-width:2px
+  classDef part fill:#eef7ee,stroke:#2e7d32
+  classDef test fill:#fff4e5,stroke:#b26a00

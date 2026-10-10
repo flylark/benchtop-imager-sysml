@@ -1,0 +1,13 @@
+flowchart LR
+  a_start(("start"))
+  a_measureFocusGrid["<b>measureFocusGrid</b>"]
+  a_adjustTilt["<b>adjustTilt</b>"]
+  a_confirmTilt["<b>confirmTilt</b>"]
+  a_done((("done")))
+  a_start --> a_measureFocusGrid
+  a_measureFocusGrid --> a_adjustTilt
+  a_adjustTilt --> a_confirmTilt
+  a_confirmTilt --> a_done
+  classDef bar fill:#333,color:#fff,stroke:#333
+  classDef crit stroke:#1f6feb,stroke-width:3px
+  classDef dead fill:#fdecea,stroke:#c0392b,stroke-width:3px,stroke-dasharray:6 3

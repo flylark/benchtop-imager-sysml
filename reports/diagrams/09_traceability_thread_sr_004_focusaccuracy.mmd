@@ -1,0 +1,31 @@
+flowchart LR
+  r_focusAccuracy("<b>SR-004</b><br/>focusAccuracy"):::top
+  r_focusStepSize("<b>CR-004</b><br/>focusStepSize")
+  r_stageTemperatureStability("<b>CR-005</b><br/>stageTemperatureStability")
+  r_stageTilt("<b>CR-006</b><br/>stageTilt")
+  r_stageFlatness("<b>CR-007</b><br/>stageFlatness")
+  r_focusAccuracy --> r_focusStepSize
+  r_focusAccuracy --> r_stageTemperatureStability
+  r_focusAccuracy --> r_stageTilt
+  r_focusAccuracy --> r_stageFlatness
+  p_imagingInstrument["imagingInstrument"]:::part
+  p_imagingInstrument -.->|satisfies| r_focusAccuracy
+  t_VT_04[/"VT-04 FocusStabilityTest"/]:::test
+  r_focusAccuracy -.->|verified by| t_VT_04
+  p_imagingInstrument_optics_focus["optics.focus"]:::part
+  p_imagingInstrument_optics_focus -.->|satisfies| r_focusStepSize
+  t_VI_01[/"VI-01 ComponentSpecInspection"/]:::test
+  r_focusStepSize -.->|verified by| t_VI_01
+  p_imagingInstrument_thermal["thermal"]:::part
+  p_imagingInstrument_thermal -.->|satisfies| r_stageTemperatureStability
+  t_VT_02[/"VT-02 TemperatureChamberTest"/]:::test
+  r_stageTemperatureStability -.->|verified by| t_VT_02
+  p_imagingInstrument_stage["stage"]:::part
+  p_imagingInstrument_stage -.->|satisfies| r_stageTilt
+  t_VT_05[/"VT-05 StageAngle"/]:::test
+  r_stageTilt -.->|verified by| t_VT_05
+  p_imagingInstrument_stage -.->|satisfies| r_stageFlatness
+  r_stageFlatness -.->|verified by| t_VT_05
+  classDef top fill:#e8f0fe,stroke:#1f6feb,stroke-width:2px
+  classDef part fill:#eef7ee,stroke:#2e7d32
+  classDef test fill:#fff4e5,stroke:#b26a00

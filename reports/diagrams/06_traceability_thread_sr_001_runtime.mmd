@@ -1,0 +1,9 @@
+flowchart LR
+  r_runTime("<b>SR-001</b><br/>runTime"):::top
+  p_imagingInstrument["imagingInstrument"]:::part
+  p_imagingInstrument -.->|satisfies| r_runTime
+  t_VT_01[/"VT-01 RunTimeTest"/]:::test
+  r_runTime -.->|verified by| t_VT_01
+  classDef top fill:#e8f0fe,stroke:#1f6feb,stroke-width:2px
+  classDef part fill:#eef7ee,stroke:#2e7d32
+  classDef test fill:#fff4e5,stroke:#b26a00

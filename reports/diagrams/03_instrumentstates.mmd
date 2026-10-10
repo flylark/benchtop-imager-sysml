@@ -1,0 +1,24 @@
+stateDiagram-v2
+  state "off" as s_off
+  state "on" as s_on
+  [*] --> s_off
+  state s_on {
+    state "initializing" as s_initializing
+    state "ready" as s_ready
+    state "running" as s_running
+    state "aborting" as s_aborting
+    state "error" as s_error
+    [*] --> s_initializing
+    s_running : do runWorkflow
+    s_aborting : do safeStop
+    s_initializing --> s_ready : SelfTestPassed
+    s_initializing --> s_error : SelfTestFailed
+    s_ready --> s_running : StartRun
+    s_running --> s_ready : activity done
+    s_running --> s_aborting : AbortRun
+    s_running --> s_error : OverTemperature
+    s_aborting --> s_ready : activity done
+    s_error --> s_initializing : Reboot
+  }
+  s_off --> s_on : PowerOn
+  s_on --> s_off : PowerOff

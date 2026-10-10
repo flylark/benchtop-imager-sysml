@@ -1,0 +1,31 @@
+flowchart LR
+  a_start(("start"))
+  a_loadSample["<b>loadSample</b><br/>5 min · → deck"]:::crit
+  a_prepFork["fork"]:::bar
+  a_primeFluidics["<b>primeFluidics</b><br/>10 min · → fluidics"]:::crit
+  a_heatToSetpoint["<b>heatToSetpoint</b><br/>10 min · → thermal"]:::crit
+  a_prepJoin["join"]:::bar
+  a_positionSample["<b>positionSample</b><br/>2 min · → stage"]:::crit
+  a_alignStage["<b>alignStage</b> : AlignStage<br/>3 min<br/><i>measureFocusGrid (optics) → adjustTilt (stage) → confirmTilt (optics)</i>"]:::crit
+  a_autofocus["<b>autofocus</b><br/>5 min · → optics.focus"]:::crit
+  a_acquireImages["<b>acquireImages</b><br/>60 min · → optics.camera, optics.laser"]:::crit
+  a_processImages["<b>processImages</b><br/>20 min · → electronics"]:::crit
+  a_reportResults["<b>reportResults</b><br/>5 min · → software"]:::crit
+  a_done((("done")))
+  a_start --> a_loadSample
+  a_loadSample --> a_prepFork
+  a_prepFork --> a_primeFluidics
+  a_prepFork --> a_heatToSetpoint
+  a_primeFluidics --> a_prepJoin
+  a_heatToSetpoint --> a_prepJoin
+  a_prepJoin --> a_positionSample
+  a_positionSample --> a_alignStage
+  a_alignStage --> a_autofocus
+  a_autofocus --> a_acquireImages
+  a_acquireImages --> a_processImages
+  a_processImages --> a_reportResults
+  a_reportResults --> a_done
+  classDef bar fill:#333,color:#fff,stroke:#333
+  classDef crit stroke:#1f6feb,stroke-width:3px
+  classDef dead fill:#fdecea,stroke:#c0392b,stroke-width:3px,stroke-dasharray:6 3
+  linkStyle 0,1,2,3,4,5,6,7,8,9,10,11,12 stroke:#1f6feb,stroke-width:3px

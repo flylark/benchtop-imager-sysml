@@ -1,0 +1,26 @@
+flowchart LR
+  r_spatialResolution("<b>SR-003</b><br/>spatialResolution"):::top
+  r_objectiveNA("<b>CR-001</b><br/>objectiveNA")
+  r_pixelSizeAtSample("<b>CR-002</b><br/>pixelSizeAtSample")
+  r_cameraFormat("<b>CR-003</b><br/>cameraFormat")
+  r_spatialResolution --> r_objectiveNA
+  r_spatialResolution --> r_pixelSizeAtSample
+  r_spatialResolution --> r_cameraFormat
+  p_imagingInstrument["imagingInstrument"]:::part
+  p_imagingInstrument -.->|satisfies| r_spatialResolution
+  t_VT_03[/"VT-03 ResolutionTargetTest"/]:::test
+  r_spatialResolution -.->|verified by| t_VT_03
+  p_imagingInstrument_optics_objective["optics.objective"]:::part
+  p_imagingInstrument_optics_objective -.->|satisfies| r_objectiveNA
+  t_VA_01[/"VA-01 OpticalDesignAnalysis"/]:::test
+  r_objectiveNA -.->|verified by| t_VA_01
+  p_imagingInstrument_optics["optics"]:::part
+  p_imagingInstrument_optics -.->|satisfies| r_pixelSizeAtSample
+  r_pixelSizeAtSample -.->|verified by| t_VA_01
+  p_imagingInstrument_optics_camera["optics.camera"]:::part
+  p_imagingInstrument_optics_camera -.->|satisfies| r_cameraFormat
+  t_VI_01[/"VI-01 ComponentSpecInspection"/]:::test
+  r_cameraFormat -.->|verified by| t_VI_01
+  classDef top fill:#e8f0fe,stroke:#1f6feb,stroke-width:2px
+  classDef part fill:#eef7ee,stroke:#2e7d32
+  classDef test fill:#fff4e5,stroke:#b26a00

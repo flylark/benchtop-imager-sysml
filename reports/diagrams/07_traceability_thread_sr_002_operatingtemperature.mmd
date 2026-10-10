@@ -1,0 +1,14 @@
+flowchart LR
+  r_operatingTemperature("<b>SR-002</b><br/>operatingTemperature"):::top
+  r_stageTemperatureStability("<b>CR-005</b><br/>stageTemperatureStability")
+  r_operatingTemperature --> r_stageTemperatureStability
+  p_imagingInstrument["imagingInstrument"]:::part
+  p_imagingInstrument -.->|satisfies| r_operatingTemperature
+  t_VT_02[/"VT-02 TemperatureChamberTest"/]:::test
+  r_operatingTemperature -.->|verified by| t_VT_02
+  p_imagingInstrument_thermal["thermal"]:::part
+  p_imagingInstrument_thermal -.->|satisfies| r_stageTemperatureStability
+  r_stageTemperatureStability -.->|verified by| t_VT_02
+  classDef top fill:#e8f0fe,stroke:#1f6feb,stroke-width:2px
+  classDef part fill:#eef7ee,stroke:#2e7d32
+  classDef test fill:#fff4e5,stroke:#b26a00

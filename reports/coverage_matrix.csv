@@ -1,0 +1,13 @@
+﻿ID,Requirement,Derived from,Satisfied by,Verified by,Status
+SR-001,runTime,(top level),imagingInstrument,VT-01,OK
+SR-002,operatingTemperature,(top level),imagingInstrument,VT-02,OK
+SR-003,spatialResolution,(top level),imagingInstrument,VT-03,OK
+SR-004,focusAccuracy,(top level),imagingInstrument,VT-04,OK
+SR-005,overTemperatureProtection,(top level),instrumentStates,VT-06,OK
+CR-001,objectiveNA,SR-003,optics.objective,VA-01,OK
+CR-002,pixelSizeAtSample,SR-003,optics,VA-01,OK
+CR-003,cameraFormat,SR-003,optics.camera,VI-01,OK
+CR-004,focusStepSize,SR-004,optics.focus,VI-01,OK
+CR-005,stageTemperatureStability,"SR-004, SR-002",thermal,VT-02,OK
+CR-006,stageTilt,SR-004,stage,VT-05,OK
+CR-007,stageFlatness,SR-004,stage,VT-05,OK

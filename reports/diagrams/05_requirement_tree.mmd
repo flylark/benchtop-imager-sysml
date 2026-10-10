@@ -1,0 +1,22 @@
+flowchart TB
+  r_runTime("<b>SR-001</b><br/>runTime"):::top
+  r_operatingTemperature("<b>SR-002</b><br/>operatingTemperature"):::top
+  r_spatialResolution("<b>SR-003</b><br/>spatialResolution"):::top
+  r_focusAccuracy("<b>SR-004</b><br/>focusAccuracy"):::top
+  r_overTemperatureProtection("<b>SR-005</b><br/>overTemperatureProtection"):::top
+  r_objectiveNA("<b>CR-001</b><br/>objectiveNA")
+  r_pixelSizeAtSample("<b>CR-002</b><br/>pixelSizeAtSample")
+  r_cameraFormat("<b>CR-003</b><br/>cameraFormat")
+  r_focusStepSize("<b>CR-004</b><br/>focusStepSize")
+  r_stageTemperatureStability("<b>CR-005</b><br/>stageTemperatureStability")
+  r_stageTilt("<b>CR-006</b><br/>stageTilt")
+  r_stageFlatness("<b>CR-007</b><br/>stageFlatness")
+  r_spatialResolution -->|derive| r_objectiveNA
+  r_spatialResolution -->|derive| r_pixelSizeAtSample
+  r_spatialResolution -->|derive| r_cameraFormat
+  r_focusAccuracy -->|derive| r_focusStepSize
+  r_focusAccuracy -->|derive| r_stageTemperatureStability
+  r_focusAccuracy -->|derive| r_stageTilt
+  r_focusAccuracy -->|derive| r_stageFlatness
+  r_operatingTemperature -->|derive| r_stageTemperatureStability
+  classDef top fill:#e8f0fe,stroke:#1f6feb,stroke-width:2px
